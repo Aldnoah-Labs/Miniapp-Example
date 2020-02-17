@@ -49,6 +49,7 @@
                 ? todos.filter(todo => todo.checked === true)
                 : todos
     
+    
         
 </script>
 
@@ -56,8 +57,8 @@
     <Title title={"Simple Todo Svelte"}/>
     <Form on:submit={addNew} />
       <List>
-            {#each filteredItems as todo}
-                    <Item title={todo.title} checked={todo.checked} on:remove={() => removeItem(todo.id)} />
+            {#each filteredItems as todo (todo.id)}
+                    <Item title={todo.title} bind:checked={todo.checked} on:remove={() => removeItem(todo.id)} />
             {/each}
       </List>
       <div class="flex py-4 border-t border-gray-900 justify-between">
