@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Todo Reminder</string>
+    <string name="app_name">My Todo App</string>
+    <string name="dummy_title">Dummy Title</string>
+    <string name="finished">Finished</string>
 </resources>
