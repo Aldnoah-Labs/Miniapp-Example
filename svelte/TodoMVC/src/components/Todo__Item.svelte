@@ -8,10 +8,11 @@ export let checked = false
 export let title = ""
 </script>
 
-<li class="relative flex justify-between mb-4">
-    <label class="inline-flex items-center">
-        <input type="checkbox" class="form-checkbox" bind:checked={checked}>
-        <span class="ml-2">{title}</span>
-    </label>
-    <ButtonClose on:click={() => dispatch("remove")} />
-</li>
+<template lang="pug">
+    li.relative.flex.justify-between.mb-4
+        label.inline-flex.items-center
+            input(type="checkbox" bind:checked="{checked}").form-checkbox
+            span.ml-2
+                | {title}
+        ButtonClose(on:click!="{() => dispatch('remove')}")
+</template>

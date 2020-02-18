@@ -53,21 +53,21 @@
         
 </script>
 
-<main class="m-auto max-w-md w-full overflow-hidden">
-    <Title title={"Simple Todo Svelte"}/>
-    <Form on:submit={addNew} />
-      <List>
-            {#each filteredItems as todo (todo.id)}
-                    <Item title={todo.title} bind:checked={todo.checked} on:remove={() => removeItem(todo.id)} />
-            {/each}
-      </List>
-      <div class="flex py-4 border-t border-gray-900 justify-between">
-       <div class="flex">
-            <button id="js-filter-all" class="{currentFilterStatus === NO_FILTER ? 'font-bold text-green-500' : 'text-gray-500'} text-xs mr-3  hover:underline  focus:outline-none" on:click={() => changeFilteredStatus(NO_FILTER)}>All</button>
-            <button id="js-filter-clear" class="{currentFilterStatus === COMPLETED_FILTER ? 'font-bold text-green-500' : 'text-gray-500'} text-xs mr-3  hover:underline  focus:outline-none"  on:click={() => changeFilteredStatus(COMPLETED_FILTER)}>Completed</button>
-       </div>
-       <div class="flex">
-            <button id="js-filter-clear" class="text-xs mr-3 text-red-500 focus:outline-none hover:underline" on:click={() => clearCompleted()}>Clear Completed</button>
-       </div>
-      </div>
-</main>
+<template lang="pug">
+    main.m-auto.max-w-md.w-full.overflow-hidden
+        Title(title="{'Simple Todo Svelte'}")
+        Form(on:submit="{addNew}")
+        List
+            +each('filteredItems as todo (todo.id)')
+                Item(title="{todo.title}" bind:checked="{todo.checked}" on:remove!="{() => removeItem(todo.id)}")
+        .flex.py-4.border-t.border-gray-900.justify-between
+            .flex
+                button(id="js-filter-all" class!="{currentFilterStatus === NO_FILTER ? 'font-bold text-green-500' : 'text-gray-500'} text-xs mr-3  hover:underline  focus:outline-none" on:click!="{() => changeFilteredStatus(NO_FILTER)}")
+                    |  All
+                button(id="js-filter-clear" class!="{currentFilterStatus === COMPLETED_FILTER ? 'font-bold text-green-500' : 'text-gray-500'} text-xs mr-3  hover:underline  focus:outline-none"  on:click!="{() => changeFilteredStatus(COMPLETED_FILTER)}")
+                    | Completed
+            .flex
+                button(id="js-filter-clear" class="text-xs mr-3 text-red-500 focus:outline-none hover:underline" on:click!="{() => clearCompleted()}")
+                    | Clear Completed
+
+</template>
