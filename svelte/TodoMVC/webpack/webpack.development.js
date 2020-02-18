@@ -27,7 +27,8 @@ module.exports = env => ({
         use: {
           loader: "svelte-loader",
           options: {
-            hotReload: true
+            hotReload: true,
+            preprocess: require('svelte-preprocess')({pug: true})
           }
         }
       }
