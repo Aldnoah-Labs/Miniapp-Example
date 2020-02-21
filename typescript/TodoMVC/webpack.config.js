@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = env => {
   return {
     mode: env.NODE_ENV,
-    entry: path.join(__dirname, "src", "index.ts"),
+    entry: path.join(__dirname, "src", "app.ts"),
     output: {
       path: path.join(__dirname, "dist"),
-      filename: "index.js"
+      filename: "app.js"
     },
     plugins: [
       new HtmlWebpackPlugin({
