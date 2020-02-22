@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --env.NODE_ENV=development --open",
-    "build": "webpack --env.NODE_ENV=production"
+    "build": "rm -rf dist/ && webpack --env.NODE_ENV=production"
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
