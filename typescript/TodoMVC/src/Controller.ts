@@ -2,26 +2,25 @@ import Todo from './Todo'
 import View from './View'
 import ToDoType from './TodoType'
 
-class Controller extends Todo {
-  constructor(todos: ToDoType[], public view: View) {
-    super(todos)
-    this.bindTodoListChanged(this._onToDoListChanged)
+class Controller {
+  constructor(public model: Todo, public view: View) {
+    this.model.bindTodoListChanged(this._onToDoListChanged)
     this.view.addTodoListener(this._addTodoHandler)
     this.view.deleteTodoListener(this._deleteTodoHandler)
     this.view.toggleIsCompleteListener(this._isCompleteHandler)
 
 
-    this._onToDoListChanged(this.todos)
+    this._onToDoListChanged(this.model.todos)
     this.view.changeFilterListener(this._changeFilter)
     this.view.clearCompletedListener(this._clearCompletedTodo)
   }
 
   _clearCompletedTodo = (): void => {
-    super.clearCompletedTodo()
+    this.model.clearCompletedTodo()
   }
 
   _changeFilter = (filterType: string): void => {
-    super.changeFilter(filterType)
+    this.model.changeFilter(filterType)
   }
 
   _onToDoListChanged = (todos: ToDoType[]): void => {
@@ -29,15 +28,15 @@ class Controller extends Todo {
   }
 
   _addTodoHandler = (todoTitle: string): void => {
-    this.addTodos(todoTitle)
+    this.model.addTodos(todoTitle)
   }
 
   _deleteTodoHandler = (id: number): void => {
-    super.deleteTodos(id)
+    this.model.deleteTodos(id)
   }
 
   _isCompleteHandler = (id: number): void => {
-    super.toggleIsComplete(id)
+    this.model.toggleIsComplete(id)
   }
 }
 

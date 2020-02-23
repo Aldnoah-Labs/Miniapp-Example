@@ -1,12 +1,13 @@
 import ToDoType from './TodoType'
+import Todo from './Todo'
 import View from './View'
 import Controller from './Controller'
 
 import './css/tailwindcss.css'
 import './css/_button.css'
 
-//Todos Data
-const todos: ToDoType[] = [
+//Data
+const data = new Todo([
   {
     id: 1,
     isChecked: true,
@@ -15,8 +16,11 @@ const todos: ToDoType[] = [
   {
     id: 2,
     isChecked: false,
-    title: 'Belajar Haskell'
+    title: 'Belajar Haskell Dasar'
   }
-]
+])
 
-const app = new Controller(todos, new View())
+//View
+const view = new View()
+
+const app = new Controller(data, view)
