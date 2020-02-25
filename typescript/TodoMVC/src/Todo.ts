@@ -13,11 +13,6 @@ class Todo {
     this._onTodoListChanged = TodoListViewCallback
   }
 
-  //commit changed to view
-  _commit(todos: TodoType[]): void {
-    this._onTodoListChanged(todos)
-  }
-
   //add todos
   addTodos(todoTitle: string): void {
     const todo = {
@@ -26,7 +21,7 @@ class Todo {
       title: todoTitle
     }
     this.todos = this.todos.concat(todo)
-    this._commit(this.todos)
+    this._onTodoListChanged(this.todos)
   }
 
 }
