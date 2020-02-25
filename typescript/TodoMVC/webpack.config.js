@@ -24,6 +24,14 @@ module.exports = env => {
           test: /.tsx?$/,
           exclude: [path.resolve(__dirname, "node_modules")],
           loader: "ts-loader"
+        },
+        {
+          test: /\.css$/,
+          use: [
+            "style-loader",
+            { loader: "css-loader", options: { importLoaders: 1 } },
+            "postcss-loader"
+          ]
         }
       ]
     },

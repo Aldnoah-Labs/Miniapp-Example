@@ -1,3 +1,6 @@
+//Example Code
+import './css/index.css'
+
 let message: string = "Hallo From Aldnoah Team!";
 let h1: HTMLElement = document.createElement("h1");
 
