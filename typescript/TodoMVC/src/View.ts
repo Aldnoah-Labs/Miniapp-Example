@@ -1,14 +1,20 @@
-import { TodoType } from './Type'
+import { TodoType, filterType } from './Type'
 
 class View {
 
   _ENTER_KEY: number = 13
   _toDoListEl: HTMLElement
   _inputTodoEl: HTMLInputElement
+  _filterAllBtn: HTMLButtonElement
+  _filterCompleteBtn: HTMLButtonElement
+  _clearCompletedBtn: HTMLButtonElement
 
   constructor() {
     this._toDoListEl = <HTMLElement>document.getElementById('todo-list')
     this._inputTodoEl = <HTMLInputElement>document.getElementById('title')
+    this._filterAllBtn = <HTMLButtonElement>document.getElementById('filter-all');
+    this._filterCompleteBtn = <HTMLButtonElement>document.getElementById('filter-complete');
+    this._clearCompletedBtn = <HTMLButtonElement>document.getElementById('filter-clear');
   }
 
   //get input value
@@ -42,7 +48,7 @@ class View {
       const checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
       checkbox.classList.add('form-checkbox')
-      checkbox.checked = todo.isDone
+      checkbox.checked = todo.isComplete
 
       const title = document.createElement('span')
       title.classList.add('ml-2')
@@ -68,8 +74,7 @@ class View {
 
   //addtodo listener
   addTodoListener = (addHandler: (todoTitle: string) => void): void => {
-    this._inputTodoEl.addEventListener('keyup', (e: any) => {
-
+    this._inputTodoEl.addEventListener('keyup', (e: KeyboardEvent) => {
       if (e.which === this._ENTER_KEY) {
         if (this._getInputElValue()) {
           addHandler(this._getInputElValue())
@@ -77,6 +82,36 @@ class View {
         }
       }
     })
+  }
+
+  changeFilterListener = (changeFilterHandler: (filterType: filterType) => void) => {
+    this._filterAllBtn.addEventListener('click', () => {
+      this._filterAllBtn.classList.add('font-bold', 'text-green-500')
+      this._filterCompleteBtn.classList.remove('font-bold', 'text-green-500')
+      this._filterCompleteBtn.classList.add('text-gray-500')
+      changeFilterHandler(filterType.all)
+    })
+    this._filterCompleteBtn.addEventListener('click', () => {
+      this._filterCompleteBtn.classList.add('font-bold', 'text-green-500')
+      this._filterAllBtn.classList.remove('font-bold', 'text-green-500')
+      this._filterAllBtn.classList.add('text-gray-500')
+      changeFilterHandler(filterType.complete)
+    })
+  }
+
+  toggleisCompleteListener = (isCompleteHandler: (id: number) => void) => {
+    this._toDoListEl.addEventListener('click', (e: MouseEvent) => {
+      if ((e.target as HTMLInputElement).type === 'checkbox') {
+        const targetInputEl = e.target as HTMLInputElement
+        const targetListEl = (targetInputEl.parentElement as HTMLInputElement).parentElement as HTMLInputElement
+        const id = parseInt(targetListEl.id)
+        isCompleteHandler(id)
+      }
+    })
+  }
+
+  clearCompletedListener = (clearCompletedHandler: () => void) => {
+    this._clearCompletedBtn.addEventListener('click', clearCompletedHandler)
   }
 
 }

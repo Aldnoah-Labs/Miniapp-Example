@@ -1,7 +1,12 @@
 type TodoType = {
   id: number,
-  isDone: boolean,
+  isComplete: boolean,
   title: string,
 }
 
-export { TodoType }
+enum filterType {
+  all,
+  complete
+}
+
+export { TodoType, filterType }

@@ -9,12 +9,12 @@ import './css/_button.css'
 const data = new Todo([
   {
     id: 1,
-    isDone: true,
+    isComplete: true,
     title: 'Belajar Typescript Dasar'
   },
   {
     id: 2,
-    isDone: false,
+    isComplete: false,
     title: 'Belajar Haskell Dasar'
   }
 ])
