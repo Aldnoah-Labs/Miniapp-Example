@@ -30,7 +30,7 @@ class Controller {
     this.model.toggleisCompleteTodo(id)
   }
 
-  //change filter handl;er
+  //change filter handler
   _changeFilterHandler = (filterType: filterType): void => {
     this.model.changeFilter(filterType)
   }
