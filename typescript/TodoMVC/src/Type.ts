@@ -5,8 +5,8 @@ type TodoType = {
 }
 
 enum filterType {
-  all = 'all',
-  complete = 'complete'
+  all,
+  complete
 }
 
 export { TodoType, filterType }
