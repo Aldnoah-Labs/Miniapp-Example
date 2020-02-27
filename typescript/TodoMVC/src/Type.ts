@@ -1,6 +1,6 @@
 type TodoType = {
   id: number,
-  isDone: boolean,
+  isComplete: boolean,
   title: string,
 }
 
