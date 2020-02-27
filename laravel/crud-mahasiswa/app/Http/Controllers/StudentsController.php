@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
+    public function validasi($request){
+      return $this->validate($request, [
+          'nama' => 'required',
+          'nrp' => 'required|numeric',
+          'email' => 'required',
+          'jurusan' => 'required',
+      ]);
+    }
     public function index()
     {
         // * show all without trashed
@@ -25,12 +33,7 @@ class StudentsController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama' => 'required',
-            'nrp' => 'required|numeric',
-            'email' => 'required',
-            'jurusan' => 'required',
-        ]);
+        $this->validasi($request);
 
         Student::create($request->all());
         return redirect('/students')->with('status','Data Mahasiswa Berhasil Ditambahkan!');
@@ -48,12 +51,8 @@ class StudentsController extends Controller
 
     public function update(Request $request, Student $student)
     {
-        $this->validate($request, [
-            'nama' => 'required',
-            'nrp' => 'required',
-            'email' => 'required',
-            'jurusan' => 'required',
-        ]);
+
+        $this->validasi($request);
 
         Student::where('id', $student->id)
                 ->update([

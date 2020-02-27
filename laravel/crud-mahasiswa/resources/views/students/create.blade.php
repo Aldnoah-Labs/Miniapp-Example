@@ -15,7 +15,6 @@
                   @endforeach
               </ul>
           </div>
-          <meta http-equiv="refresh" content="5; url={{url('/students/create')}}"/>
       @endif
 
       <form method="post" action="{{url('/students')}}">
@@ -26,15 +25,15 @@
         </div>
         <div class="form-group">
           <label for="nrp">NRP</label>
-          <input type="text" class="form-control" id="nrp" placeholder="Masukkan Nama" name="nrp" value="{{ old('nrp') }}">
+          <input type="text" class="form-control" id="nrp" placeholder="Masukkan NRP" name="nrp" value="{{ old('nrp') }}">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" class="form-control" id="email" placeholder="Masukkan Nama" name="email" value="{{ old('email') }}">
+          <input type="text" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="{{ old('email') }}">
         </div>
         <div class="form-group">
           <label for="jurusan">Jurusan</label>
-          <input type="text" class="form-control" id="jurusan" placeholder="Masukkan Nama" name="jurusan" value="{{ old('jurusan') }}">
+          <input type="text" class="form-control" id="jurusan" placeholder="Masukkan Jurusan" name="jurusan" value="{{ old('jurusan') }}">
         </div>
         <button type="submit" class="btn btn-primary">Tambah Data!</button>
       </form>
