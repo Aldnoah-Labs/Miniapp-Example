@@ -1,4 +1,4 @@
-import { TodoType } from './Type'
+import { TodoType, filterType } from './Type'
 import Todo from './Todo'
 import View from './View'
 
@@ -31,7 +31,7 @@ class Controller {
   }
 
   //change filter handl;er
-  _changeFilterHandler = (filterType: string): void => {
+  _changeFilterHandler = (filterType: filterType): void => {
     this.model.changeFilter(filterType)
   }
 

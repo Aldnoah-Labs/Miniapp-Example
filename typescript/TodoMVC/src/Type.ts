@@ -4,4 +4,9 @@ type TodoType = {
   title: string,
 }
 
-export { TodoType }
+enum filterType {
+  all = 'all',
+  complete = 'complete'
+}
+
+export { TodoType, filterType }

@@ -1,7 +1,7 @@
-import { TodoType } from './Type'
+import { TodoType, filterType } from './Type'
 
 class Todo {
-  _FILTER: string = 'all'
+  _FILTER: filterType = filterType.all
   _onTodoListChanged: (todos: TodoType[]) => void
 
   constructor(public todos: TodoType[]) {
@@ -16,7 +16,7 @@ class Todo {
 
   //get todos by filter
   getTodos(): TodoType[] {
-    return this._FILTER === 'complete' ? this.todos.filter(todo => todo.isComplete === true) : this.todos
+    return this._FILTER === filterType.complete ? this.todos.filter(todo => todo.isComplete === true) : this.todos
   }
 
   //add todos
@@ -31,7 +31,7 @@ class Todo {
   }
 
   //change filter
-  changeFilter(filterTodo: string) {
+  changeFilter(filterTodo: filterType) {
     this._FILTER = filterTodo
     this._onTodoListChanged(this.getTodos())
   }

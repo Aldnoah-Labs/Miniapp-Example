@@ -1,4 +1,4 @@
-import { TodoType } from './Type'
+import { TodoType, filterType } from './Type'
 
 class View {
 
@@ -84,18 +84,18 @@ class View {
     })
   }
 
-  changeFilterListener = (changeFilterHandler: (filterType: string) => void) => {
+  changeFilterListener = (changeFilterHandler: (filterType: filterType) => void) => {
     this._filterAllBtn.addEventListener('click', () => {
       this._filterAllBtn.classList.add('font-bold', 'text-green-500')
       this._filterCompleteBtn.classList.remove('font-bold', 'text-green-500')
       this._filterCompleteBtn.classList.add('text-gray-500')
-      changeFilterHandler('all')
+      changeFilterHandler(filterType.all)
     })
     this._filterCompleteBtn.addEventListener('click', () => {
       this._filterCompleteBtn.classList.add('font-bold', 'text-green-500')
       this._filterAllBtn.classList.remove('font-bold', 'text-green-500')
       this._filterAllBtn.classList.add('text-gray-500')
-      changeFilterHandler('complete')
+      changeFilterHandler(filterType.complete)
     })
   }
 
