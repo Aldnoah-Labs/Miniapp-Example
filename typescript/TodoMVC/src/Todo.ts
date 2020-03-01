@@ -30,6 +30,12 @@ class Todo {
     this._onTodoListChanged(this.todos)
   }
 
+  //delete todos
+  deleteTodos(id: number): void {
+    this.todos = this.todos.filter(todo => todo.id !== id)
+    this._onTodoListChanged(this.getTodos())
+  }
+
   //change filter
   changeFilter(filterTodo: filterType) {
     this._FILTER = filterTodo
@@ -42,6 +48,7 @@ class Todo {
     this._onTodoListChanged(this.getTodos())
   }
 
+  //unchecklist completed todos
   clearCompletedTodo(): void {
     this.todos = this.todos.map(todo => ({ ...todo, isComplete: false }))
     this._onTodoListChanged(this.getTodos())

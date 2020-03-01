@@ -84,6 +84,16 @@ class View {
     })
   }
 
+  //deletetodo listener
+  deleteTodoListener = (deleteHandler: (id: number) => void): void => {
+    this._toDoListEl.addEventListener('click', (e: any) => {
+      if (e.target.className === 'close-icon') {
+        const id = parseInt(e.target.parentElement.parentElement.parentElement.id)
+        deleteHandler(id)
+      }
+    })
+  }
+
   changeFilterListener = (changeFilterHandler: (filterType: filterType) => void) => {
     this._filterAllBtn.addEventListener('click', () => {
       this._filterAllBtn.classList.add('font-bold', 'text-green-500')
