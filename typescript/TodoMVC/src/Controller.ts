@@ -32,8 +32,8 @@ class Controller {
   }
 
   //isComplete handler
-  _isCompleteHandler = (id: number): void => {
-    this.model.toggleisCompleteTodo(id)
+  _isCompleteHandler = (todoID: number): void => {
+    this.model.toggleisCompleteTodo(todoID)
   }
 
   //change filter handler

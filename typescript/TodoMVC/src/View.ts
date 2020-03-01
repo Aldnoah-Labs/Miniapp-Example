@@ -85,11 +85,14 @@ class View {
   }
 
   //deletetodo listener
-  deleteTodoListener = (deleteHandler: (id: number) => void): void => {
-    this._toDoListEl.addEventListener('click', (e: any) => {
-      if (e.target.className === 'close-icon') {
-        const id = parseInt(e.target.parentElement.parentElement.parentElement.id)
-        deleteHandler(id)
+  deleteTodoListener = (deleteHandler: (todoID: number) => void): void => {
+    this._toDoListEl.addEventListener('click', (e: MouseEvent) => {
+      const targetClickEl = e.target as HTMLInputElement
+      if (targetClickEl.className === 'close-icon') {
+        const targetButtonEl = (targetClickEl.parentElement as HTMLInputElement).parentElement as HTMLInputElement
+        const targetListEl = targetButtonEl.parentElement as HTMLInputElement
+        const todoID = parseInt(targetListEl.id)
+        deleteHandler(todoID)
       }
     })
   }
@@ -109,13 +112,13 @@ class View {
     })
   }
 
-  toggleisCompleteListener = (isCompleteHandler: (id: number) => void) => {
+  toggleisCompleteListener = (isCompleteHandler: (todoID: number) => void) => {
     this._toDoListEl.addEventListener('click', (e: MouseEvent) => {
-      if ((e.target as HTMLInputElement).type === 'checkbox') {
-        const targetInputEl = e.target as HTMLInputElement
+      const targetInputEl = e.target as HTMLInputElement
+      if (targetInputEl.type === 'checkbox') {
         const targetListEl = (targetInputEl.parentElement as HTMLInputElement).parentElement as HTMLInputElement
-        const id = parseInt(targetListEl.id)
-        isCompleteHandler(id)
+        const todoID = parseInt(targetListEl.id)
+        isCompleteHandler(todoID)
       }
     })
   }
